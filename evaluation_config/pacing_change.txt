@@ -1,0 +1,2 @@
+Request pacing: 25 seconds
+Reason: Duke Gateway HTTP 429 rate limiting

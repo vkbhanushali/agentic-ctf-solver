@@ -1,0 +1,12 @@
+Model: claude-haiku-5-5
+Configuration: claude-haiku-docker-v2
+Docker image: ctf-solver:local
+Docker image ID:
+sha256:3506660c8d016846ea0806ef5e2a3ad68e1583d64b8019c01d45ed0e8721dab3
+Evaluation challenges: 10
+Trials per challenge: 3
+Maximum steps: 40
+Maximum time: 1200 seconds
+Maximum tokens: 600000
+Recorded at:
+Tue Nov 10 01:40:29 UTC 2026

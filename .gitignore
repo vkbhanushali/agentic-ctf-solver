@@ -1,0 +1,31 @@
+.env
+.venv/
+external/
+workspaces/
+__pycache__/
+traces/
+.DS_Store
+results/results_old.jsonl
+results/results_smoketests.jsonl
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+**/private_verifier.json
+
+# Python environment and cache
+.venv/
+__pycache__/
+*.pyc
+
+# Temporary solver files
+workspaces/
+backups/
+traces/
+traces_docker/
+
+# Temporary test outputs
+test_*.py
+*.log
