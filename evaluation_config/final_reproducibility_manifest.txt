@@ -1,0 +1,48 @@
+Agentic CTF Solver - Reproducibility Manifest
+Generated: 2026-11-10T22:45:54Z
+
+Git commit: 3f8680baf356f59f94a69ab117e6bd204478107f
+Git branch: main
+
+Python: Python 3.12.3
+Docker: Docker version 28.4.0, build d8eb465
+
+Solver image:
+sha256:3506660c8d016846ea0806ef5e2a3ad68e1583d64b8019c01d45ed0e8721dab3
+
+Pwn service image:
+sha256:f3613ad952582dd60ef01c9a3c5c9775cb0783e836ef9e21a7fe738601a6c3cb
+
+Source file hashes:
+662dfbf14f4476efdf8f8712d3ffa94f5eb233053bdcbe05949fd74f29141d0f  agent/agent_loop.py
+05b8035171d7c350d8f7dc11c343b5e3b2a8b68e5152413b4fccb09cf2c38b47  agent/sandbox.py
+6da0701185232a890edfaf36c7ef2fa12b1e5b968ae0e052c1224cfb5ff09a4e  controller/runner.py
+35b64153136128f5a34bc8e74f5f51be08bbc26bab9092805eef1f8e1ac54006  controller/service_health.py
+
+Dataset:
+Repository: https://github.com/NYU-LLM-CTF/CTFTiny
+Commit: f1c9531672c45b24b7fb5f3aa44a7ac33d3602f8
+
+Evaluation configuration:
+Model: claude-haiku-5-5
+Gateway: Duke AI Gateway
+Solver Docker image: ctf-solver:local
+Maximum model steps: 40
+Maximum total tokens: 600000
+Maximum wall-clock time: 1200 seconds
+Request pacing: 25 seconds
+
+Original evaluation:
+Challenges: 10
+Trials per challenge: 3
+Total attempts: 30
+Verified solves: 26
+Success rate: 86.67%
+Mean tokens: 64449
+Mean runtime: 85.20 seconds
+
+Important:
+The original evaluation used an earlier agent configuration.
+Request pacing was changed during the original evaluation.
+This manifest describes the current source code and environment,
+not an exact snapshot of the original 30-attempt configuration.
