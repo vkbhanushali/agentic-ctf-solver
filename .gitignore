@@ -29,3 +29,8 @@ traces_docker/
 # Temporary test outputs
 test_*.py
 *.log
+
+# Local evaluation records
+results/
+results_docker/final_evaluation.jsonl
+results_docker/integration_test.jsonl
