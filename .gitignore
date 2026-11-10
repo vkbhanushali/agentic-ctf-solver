@@ -34,3 +34,10 @@ test_*.py
 results/
 results_docker/final_evaluation.jsonl
 results_docker/integration_test.jsonl
+
+# Agent backup files
+agent/agent_loop_backup.py
+agent/agent_loop_before_optimization.py
+
+# Experimental evaluation records
+results_docker/*.jsonl

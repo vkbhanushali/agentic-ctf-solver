@@ -68,13 +68,16 @@ class DockerSandbox:
         max_output=8000,
         image="ctf-solver:local",
         container_name=None,
+        network="none",
     ):
+        
         import uuid
 
         self.workspace = Path(workspace_dir).resolve()
         self.timeout = timeout
         self.max_output = max_output
         self.image = image
+        self.network = network
         self.container = (
             container_name
             or "ctf-" + uuid.uuid4().hex[:12]
@@ -88,7 +91,7 @@ class DockerSandbox:
             [
                 "docker", "run", "-d",
                 "--name", self.container,
-                "--network", "none",
+                "--network", self.network,
                 "--read-only",
                 "--user", "10001:10001",
                 "--cap-drop", "ALL",

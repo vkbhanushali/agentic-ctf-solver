@@ -19,7 +19,16 @@ Approach:
 
 Do not assume every challenge uses the same flag format.
 Do not try to access the internet or look up the challenge online.
-Be efficient: you have limited steps and time."""
+
+Be efficient: you have limited steps and time.
+
+IMPORTANT MEMORY INSTRUCTIONS:
+- Your conversation history may be trimmed to reduce token usage.
+- Save important discoveries, decoded values, hypotheses, and failed approaches
+  in /work/notes.txt using run_command.
+- Before repeating an investigation, check /work/notes.txt.
+- Keep notes concise and update them as you learn new information.
+- Do not store API keys, credentials, or expected flags in notes."""
 
 class BudgetExceeded(Exception):
     def __init__(self, reason): self.reason = reason
@@ -112,12 +121,55 @@ class Agent:
         ]
         status, reason = "no_flag", None
         try:
+
             while True:
                 self._check_budget()
-                self.steps += 1
-                self.trace.log("step_begin", step=self.steps,
-                               elapsed_s=round(time.time()-self.t0, 1),
-                               cumulative_tokens=self.total_tokens)
+
+                # Keep the original instructions and recent conversation.
+                # Only trim between completed model/tool exchanges.
+
+                if len(messages) > 22:
+                    # Find a safe boundary between completed exchanges.
+                    cutoff = max(2, len(messages) - 20)
+
+                    while cutoff < len(messages):
+                        if messages[cutoff].get("role") == "user":
+                            break
+
+                        if messages[cutoff].get("role") == "assistant":
+                            break
+
+                        cutoff += 1
+
+                    messages = messages[:2] + messages[cutoff:]
+
+                    reminder = (
+                        "Earlier conversation history was trimmed to save tokens. "
+                        "Your investigation notes are stored in /work/notes.txt. "
+                        "Use run_command to read them before continuing, if the file exists. "
+                        "Do not repeat previously completed investigations."
+                    )
+
+                    if not any(
+                        m.get("role") == "user"
+                        and m.get("content") == reminder
+                        for m in messages[2:]
+                    ):
+                        messages.append({
+                            "role": "user",
+                            "content": reminder,
+                        })
+
+                self.steps += 1            
+
+                self.trace.log(
+                    "step_begin",
+                    step=self.steps,
+                    elapsed_s=round(time.monotonic() - self.t0, 1),
+                    cumulative_tokens=self.total_tokens,
+                )
+
+                
                 msg = self._call_model(messages, tools)
                 messages.append(msg)
 
