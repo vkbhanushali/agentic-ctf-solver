@@ -42,6 +42,7 @@ The service was corrected by enabling `CAP_SETUID` and `CAP_SETGID` while keepin
 | `traces/file_only_summary.jsonl` | Sanitized file-only execution events |
 | `traces/broken_service_summary.jsonl` | Sanitized broken-service execution events |
 | `traces/fixed_service_summary.jsonl` | Sanitized successful execution events |
+| `annotated_failure_analysis.md` | Detailed failure analysis with actual tool calls, results, Docker error, and implemented fix |
 
 ## Trace References
 
