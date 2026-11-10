@@ -1,0 +1,24 @@
+Experiment: pwn-get-it
+Configuration: Broken service Docker
+Source: docker logs ctf-get-it-service
+
+Observed error:
+socat E initgroups(get_it, 1000): Operation not permitted
+
+Cause:
+The container was started with --cap-drop ALL.
+This prevented socat from switching to the restricted get_it user.
+
+Correction:
+The service was restarted with:
+--cap-drop ALL
+--cap-add SETUID
+--cap-add SETGID
+
+Verification:
+After the correction, the service displayed its original challenge
+startup output and the agent completed a verified solve.
+
+Note:
+This is an excerpt reconstructed from the observed terminal output,
+not a complete original Docker log.
