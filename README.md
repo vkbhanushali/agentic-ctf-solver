@@ -119,7 +119,7 @@ source .venv/bin/activate
 Install the Python dependencies:
 
 ```bash
-python -m pip install requests python-dotenv
+python -m pip install -r requirements.txt
 ```
 
 The controller also requires the `nyuctf` package used by `controller/challenge.py`. Install the compatible package from the NYU CTF Bench project before running the evaluation.
