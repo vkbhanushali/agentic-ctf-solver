@@ -1,0 +1,12 @@
+{
+  "challenge": "pwn-get-it",
+  "test": "controller_early_exit",
+  "status": "infrastructure_error",
+  "verified": false,
+  "elapsed_s": 1.684,
+  "total_tokens": null,
+  "model_events": 0,
+  "gateway_requests_observed": 0,
+  "failure_condition": "Service stopped; hostname resolution failed",
+  "trace_reference": "pwn-get-it-t1-492e26d228b1.jsonl"
+}

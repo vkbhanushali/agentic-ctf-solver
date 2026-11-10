@@ -43,6 +43,7 @@ The service was corrected by enabling `CAP_SETUID` and `CAP_SETGID` while keepin
 | `traces/broken_service_summary.jsonl` | Sanitized broken-service execution events |
 | `traces/fixed_service_summary.jsonl` | Sanitized successful execution events |
 | `annotated_failure_analysis.md` | Detailed failure analysis with actual tool calls, results, Docker error, and implemented fix |
+| `readiness-check/` | Automated Docker service readiness tests, early-exit results, and sanitized trace evidence |
 
 ## Trace References
 
@@ -71,3 +72,16 @@ Each configuration was tested once. These results demonstrate an observed engine
 The agent implementation also evolved during experimentation, so the three runs should not be presented as a fully controlled comparison.
 
 The original 26/30 CTFTiny evaluation remains separate from this experiment.
+
+## Additional Improvement: Automated Service Readiness
+
+We added a service readiness check to the controller to detect unavailable or incorrectly configured Docker services before starting Claude.
+
+The check successfully identified:
+- An unavailable TCP port.
+- A broken socat service caused by missing Docker capabilities.
+- A stopped challenge service.
+
+In the full runner test, the controller stopped with an infrastructure error in 1.684 seconds, with no model activity recorded.
+
+See [Readiness Check Evidence](readiness-check/README.md) for the test results and supporting trace.

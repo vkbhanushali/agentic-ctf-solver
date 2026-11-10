@@ -8,6 +8,7 @@ import subprocess
 import time
 import uuid
 from pathlib import Path
+from controller.service_health import check_pwn_service
 
 from dotenv import load_dotenv
 
@@ -137,7 +138,22 @@ def worker(challenge_id, trial, model, run_id, result_queue):
             container_name="ctf-" + run_id,
             network=solver_network,
         )
+        # Verify the pwn service before starting Claude.
+        if challenge_id == "pwn-get-it":
+            health = check_pwn_service()
 
+            trace.log(
+                "service_health",
+                ready=health["ready"],
+                reason=health["reason"],
+            )
+
+            if not health["ready"]:
+                raise RuntimeError(
+                    "Challenge service not ready: "
+                    + health["reason"]
+                )
+            
         evaluator = Evaluator(
             challenge.expected_flag(),
             trace=trace,
