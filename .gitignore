@@ -41,3 +41,7 @@ agent/agent_loop_before_optimization.py
 
 # Experimental evaluation records
 results_docker/*.jsonl
+
+# Private successful-demo evidence
+evidence/successful-demo/complete_trace.jsonl
+evidence/successful-demo/demo_result.jsonl
