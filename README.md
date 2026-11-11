@@ -7,6 +7,24 @@ The system uses a language model to analyze CTF artifacts, execute commands, dev
 
 This project was developed and evaluated using the NYU CTFTiny benchmark.
 
+## Final Competition Configuration
+
+The final competition version uses the latest working implementation maintained in the `main` branch of this repository.
+
+The agent uses Claude Haiku 5.5 through Duke AI Gateway, Docker-isolated command execution, controller-side flag verification, conversation-history management, and automated service-readiness checks for supported network-based challenges.
+
+The configured resource limits are 40 model steps, 600,000 total tokens, and 1,200 seconds per attempt.
+
+To run the current agent, follow the Installation and Setup and Running the Evaluation sections below.
+
+Historical source snapshots and evaluation configurations are preserved in `evaluation_config/`. The original 30-attempt evaluation and later improvement experiments are documented separately.
+
+The original evaluation achieved 26/30 verified solves (86.67%). However, this result was obtained before all current improvements were implemented and should not be interpreted as the measured success rate of the final competition version.
+
+AI-assisted development and code attribution are documented in [AI_USAGE.md](AI_USAGE.md).
+
+The exact final Git commit should be recorded after the team freezes the competition version.
+
 ## Evaluation Highlights
 
 | Metric | Result |

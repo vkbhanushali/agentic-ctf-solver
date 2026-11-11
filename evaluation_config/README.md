@@ -64,3 +64,15 @@ having been produced by the current agent configuration.
 
 The original evaluation results and later experiments are reported
 separately.
+
+## Final Configuration Selection
+
+The final competition implementation is maintained in the active `agent/` and `controller/` directories on the GitHub `main` branch.
+
+The historical Python source snapshots in this directory document the original evaluation and should not be executed as the current agent.
+
+The final implementation includes conversation-history management, Docker networking for supported service-based challenges, and automated service-readiness checks. These improvements were introduced after the original 30-attempt evaluation.
+
+The `final_reproducibility_manifest.txt` file records the source revision, Python and Docker versions, image identifiers, source hashes, and CTFTiny dataset version at the time the manifest was generated.
+
+Because subsequent documentation and code changes may have occurred, the manifest's recorded commit should not automatically be treated as the final competition commit. The team should record the final frozen revision separately before submission.

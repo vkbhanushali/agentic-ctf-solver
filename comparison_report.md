@@ -72,3 +72,15 @@ Additional repeated trials under a frozen configuration would be needed to measu
 This experiment demonstrated that agent performance depends not only on the language model's reasoning but also on the environment provided for challenge execution.
 
 Correcting the Docker service permissions allowed the original vulnerable program to start, enabling the agent to recover a verified flag in 10 steps using 79,516 tokens.
+
+## Controlled Comparison Limitations
+
+The original evaluation achieved 26 verified solves across 30 attempts (86.67%), while the updated agent successfully completed four regression attempts on ECXOR and beleaf.
+
+The Docker experiments showed that correcting the `pwn-get-it` service environment enabled a verified solve in 10 model steps using 79,516 tokens. The automated service-readiness check also detected unavailable or incorrectly configured services before starting Claude. In the full runner test, an unavailable service was detected in 1.684 seconds without any recorded model activity.
+
+However, these experiments were not conducted as a fully controlled comparison of the original and updated agent versions. Several factors changed during development, including request pacing, conversation-history management, and Docker service availability. Each `pwn-get-it` configuration was also tested only once.
+
+Therefore, the available evidence supports the effectiveness of specific infrastructure improvements and confirms that the updated agent can solve the tested regression challenges. It does not establish a statistically reliable improvement in overall success rate or token efficiency.
+
+We selected the updated implementation for the final competition because it supports additional challenge environments and includes preventive infrastructure validation. A controlled multi-trial comparison under identical settings remains future work.
