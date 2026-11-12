@@ -2,50 +2,82 @@
 
 ## Overview
 
-Generative AI tools were used during the development, debugging, testing, and documentation of the Agentic AI CTF Solver project.
+Generative AI tools were used to assist with the development, testing, debugging, and documentation of the Agentic AI CTF Solver.
 
-AI-generated code and recommendations were reviewed and modified before integration. The team remains responsible for the submitted implementation, experimental results, and conclusions.
+Claude (Anthropic) assisted with the original agent implementation, while ChatGPT (OpenAI) subsequently assisted with improvements to conversation management, Docker networking, service-readiness checks, and evaluation documentation.
 
-## AI-Assisted Development
+All AI-assisted code was reviewed, modified where necessary, and tested by the team before integration.
 
-| File or component | AI tool | Assistance provided | Date |
-|---|---|---|---|
-| `agent/agent_loop.py` | ChatGPT | Conversation trimming, investigation notes, token management, and debugging guidance | November 2026 |
-| `agent/sandbox.py` | ChatGPT | Configurable Docker networking and sandbox integration | November 2026 |
-| `controller/runner.py` | ChatGPT | Service-based challenge configuration and readiness-check integration | November 2026 |
-| `controller/service_health.py` | ChatGPT | Service-health validation and error-handling logic | November 10, 2026 |
-| `scripts/start_pwn_get_it.sh` | ChatGPT | Docker service startup script and Linux capability configuration | November 10, 2026 |
-| `evidence/pwn-get-it/` | ChatGPT | Evidence extraction scripts, sanitized trace summaries, and comparison documentation | November 2026 |
-| `README.md` and project report | ChatGPT | Documentation organization, technical explanations, and drafting assistance | November 2026 |
+## 1. Original Agent Development — Claude (Anthropic)
 
-Dates indicate the approximate development period and should be verified against Git history and conversation timestamps before submission.
+| File or Component | AI Assistance Provided |
+|---|---|
+| Project structure and workstation setup | Folder structure, Python environment, Docker Desktop installation, and macOS troubleshooting |
+| `agent/Dockerfile.solver` | Non-root solver image, CTF tooling, and architecture compatibility |
+| `agent/sandbox.py` | Docker and local sandbox backends, network isolation, path validation, and timeouts |
+| `agent/tools.py` | Tool definitions, input validation, output limits, and error handling |
+| `agent/agent_loop.py` | Autonomous agent loop, resource limits, and system prompt drafting |
+| `controller/config.py` | Centralized configuration, resource limits, and configuration snapshots |
+| `controller/challenge.py` | Challenge loading, flag protection, and contestant-file staging |
+| `controller/evaluator.py` | Flag verification, submission handling, and logging |
+| `controller/trace.py` | JSONL event logging and output handling |
+| `controller/runner.py` | Multi-challenge evaluation, fresh workspaces, and result recording |
+| `controller/summary.py`, `controller/plots.py` | Statistical summaries, metrics, and visualization |
+| `scripts/check_gateway.py` | Gateway connectivity and model verification |
 
-The table identifies known ChatGPT-assisted components; it is not necessarily a complete inventory of all AI-generated code in the project.
+AI tool: Claude (Anthropic)
 
-## Example Code Attribution
+Development period: November 2026
 
-The service-readiness implementation in `controller/service_health.py` was drafted with assistance from ChatGPT (OpenAI, GPT-6) on November 10, 2026. The code was integrated into the Python controller and tested against working, unavailable, and misconfigured Docker services.
+Supporting conversation:
 
-The Docker service setup in `scripts/start_pwn_get_it.sh` was developed with ChatGPT assistance on November 10, 2026 and adjusted to support the original CTFTiny challenge environment.
+https://claude.ai/share/590dbddf-8423-4731-a9b7-6c84222aed97
 
-## Supporting AI Conversation
+These entries describe the development assistance reported by the team. Individual implementation details should be checked against the final source code.
 
-ChatGPT development conversation:
+## 2. Subsequent Agent Improvements — ChatGPT (OpenAI)
+
+| File or Component | AI Assistance Provided |
+|---|---|
+| `agent/agent_loop.py` | Conversation-history trimming, investigation notes, and debugging |
+| `agent/sandbox.py` | Configurable private Docker networking |
+| `controller/runner.py` | Service-based challenge support and readiness-check integration |
+| `controller/service_health.py` | Automated service-readiness validation |
+| `scripts/start_pwn_get_it.sh` | Original vulnerable Docker service setup |
+| `evidence/pwn-get-it/` | Comparison evidence, sanitized traces, and failure analysis |
+| `comparison_report.md` | Experimental interpretation and comparison limitations |
+| `README.md` | Installation instructions, project documentation, and reproducibility guidance |
+
+AI tool: ChatGPT (OpenAI, GPT-6)
+
+Development period: November 2026
+
+Supporting conversation:
 
 https://chatgpt.com/share/e/6af3ffb5-4960-83ea-b382-8c0d9c07a982
 
-This link is provided as supporting documentation for AI-assisted code and development discussions exceeding five lines.
+The AI-assisted recommendations and code were incorporated into the project after testing and review.
 
-## Autonomous Agent Model
+## 3. Autonomous CTF-Solving Model
 
-Claude Haiku 5.5 was used through Duke AI Gateway as the model evaluated for autonomous CTF solving.
+Claude Haiku 5.5 was used through Duke AI Gateway as the language model powering the autonomous CTF-solving agent.
 
-Its challenge-solving outputs were recorded in execution traces and evaluated by the trusted controller.
+The model analyzed challenges, selected tools, executed investigations through the controller, and submitted candidate flags.
 
-This is separate from the generative AI assistance used to develop and document the software.
+This evaluation role is separate from using Claude or ChatGPT as development assistants.
 
-## Verification and Responsibility
+## 4. Code Attribution and Verification
 
-The team reviewed and tested AI-assisted code through Python syntax checks, Docker connectivity tests, controlled service-readiness checks, regression testing, and recorded CTF evaluation attempts.
+Several source files received assistance from both AI tools at different development stages.
 
-The submitted source code, results, and analysis remain the responsibility of the project team.
+For example:
+
+- `agent/agent_loop.py`: Claude assisted with the original agent loop; ChatGPT assisted with subsequent conversation-management improvements.
+- `agent/sandbox.py`: Claude assisted with the original sandbox implementation; ChatGPT assisted with configurable Docker networking.
+- `controller/runner.py`: Claude assisted with the original evaluation runner; ChatGPT assisted with service-based challenge integration and readiness checks.
+
+For AI-generated code exceeding five lines, the supporting conversation links are provided as additional documentation.
+
+Exact generation timestamps should be verified from the original conversations where required.
+
+The team remains responsible for reviewing, testing, and validating the submitted code and reported results.
